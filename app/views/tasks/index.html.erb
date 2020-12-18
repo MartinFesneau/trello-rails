@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="btn btn-primary">
+      <%= link_to 'Add a task', new_task_path%>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-3">
+      <h3>To Do</h3>
+      <div class="todo" id="todo-draggable" onEnd="test">
+          <% @todo_list.each do |task| %>
+                <p><%= task.name %></p>
+          <% end %>
+      </div>
+    </div>
+      
+    <div class="col-md-3">
+      <h3>In progress</h3>
+      <div class="inprogress" id="inprogress-draggable">
+        <% @inprogress_list.each do |task| %>
+          <p><%= task.name %></p>
+          <% end %>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <h3>Done</h3>
+      <div class="done" id="done-draggable">
+      <% @done_list.each do |task| %>
+          <p><%= task.name %></p>
+          <% end %>
+      </div>
+    </div>
+  
+  </div>
+</div>
