@@ -1,62 +1,38 @@
 import Sortable from "sortablejs";
 
-const initSortable = () => {
-  const todoList = document.getElementById("todo-draggable");
-  const todoSortable = new Sortable(todoList, {
-    group: "lists",
-    onEnd: (evt) => {
-      console.log({
-              'this': this,
-              'item': evt.item,
-              'from': evt.from,
-              'to': evt.to,
-              'oldIndex': evt.oldIndex,
-              'newIndex': evt.newIndex,
-    });
-  }
-});
+const todoList = document.getElementById("todo-draggable");
+const inprogressList = document.getElementById("inprogress-draggable");
+const doneList = document.getElementById("done-draggable");
+const csrfToken = document.querySelector("[name='csrf-token']").content;
 
+  const initSortable = () => {
+    // token to authorize CSRF with fetch
 
+    var options = {
+      group: "share",
+      animation: 100,
+      onEnd: (evt) => {
+        fetch("/move_task", {
+          method: "PATCH",
+          headers: {
+            "X-CSRF-Token": csrfToken, // Set the token
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // params with id of the task
+            id: evt.item.dataset.id,
+            // give the name of the column where the task is added
+            status: evt.to.className,
+            // allows to store the position of the task in the column
+            position: evt.newIndex,
+          }),
+        });
+      },
+    };
 
+    Sortable.create(todoList, options);
+    Sortable.create(inprogressList, options);
+    Sortable.create(doneList, options);
+  };
 
-  const inprogressList = document.getElementById("inprogress-draggable");
-  const inprogressSortable = new Sortable(inprogressList, {
-    group: "lists"
-  });
-
-  const doneList = document.getElementById("done-draggable");
-  const doneSortable = new Sortable(doneList, {
-    group: "lists"
-  });
-
-
-
-  // var options = {
-  //   group: 'share',
-  //   animation: 100,
-  // };
-  
-  // var events = [
-  //   'onEnd'
-  // ].forEach(function (name) {
-  //   options[name] = function (evt) {
-  //     console.log({
-  //       'event': name,
-  //       'this': this,
-  //       'item': evt.item,
-  //       'from': evt.from,
-  //       'to': evt.to,
-  //       'oldIndex': evt.oldIndex,
-  //       'newIndex': evt.newIndex,
-  //       'status': todoList.dataset.status
-  //     });
-  //   };
-  // });
-
-  // Sortable.create(todoList, options);
-  // Sortable.create(inprogressList, options);
-  // Sortable.create(doneList, options);
-
-}
-
-export { initSortable }
+export { initSortable };

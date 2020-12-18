@@ -8,9 +8,11 @@
 
     <div class="col-md-3">
       <h3>To Do</h3>
-      <div class="todo" id="todo-draggable" onEnd="test">
+      <div class="todo" id="todo-draggable">
           <% @todo_list.each do |task| %>
-                <p><%= task.name %></p>
+            <div data-id="<%= task.id %>">
+              <p><%= task.name %> </p>
+            </div>
           <% end %>
       </div>
     </div>
@@ -19,8 +21,10 @@
       <h3>In progress</h3>
       <div class="inprogress" id="inprogress-draggable">
         <% @inprogress_list.each do |task| %>
-          <p><%= task.name %></p>
-          <% end %>
+          <div data-id="<%= task.id %>">
+            <p><%= task.name %> </p>
+          </div>
+        <% end %>
       </div>
     </div>
     
@@ -28,7 +32,9 @@
       <h3>Done</h3>
       <div class="done" id="done-draggable">
       <% @done_list.each do |task| %>
-          <p><%= task.name %></p>
+          <div data-id="<%= task.id %>">
+            <p><%= task.name %> </p>
+          </div>
           <% end %>
       </div>
     </div>
