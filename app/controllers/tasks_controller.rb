@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   
   def index
-    @todo_list = Task.where(status: "todo")
-    @inprogress_list = Task.where(status: "inprogress")
-    @done_list = Task.where(status: "done")
+    @todo_list = Task.where(status: "todo", user: current_user).order(position: :asc)
+    @inprogress_list = Task.where(status: "inprogress", user: current_user).order(position: :asc)
+    @done_list = Task.where(status: "done", user: current_user).order(position: :asc)
   end
 
   def new
@@ -12,6 +12,7 @@ class TasksController < ApplicationController
   
   def create
     @task = Task.new(task_params)
+    @task.user = current_user
     @todo_list = Task.where(status: "todo")
     @task.position = @todo_list.length + 1
     if @task.save
@@ -25,7 +26,7 @@ class TasksController < ApplicationController
     task = Task.find(params[:id].to_i)
     task.update(status: params[:status])
     position = params[:position].to_i
-    Task.change_position(task, params[:position].to_i)
+    # Task.change_position(task, params[:position].to_i)
   end
 
 private 

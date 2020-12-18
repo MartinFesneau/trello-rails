@@ -32,5 +32,5 @@ import { initSortable } from "../components/sortable.js"
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  if (document.getElementById("todo-draggable")) initSortable();
+  if (document.getElementById("todo")) initSortable();
 });
