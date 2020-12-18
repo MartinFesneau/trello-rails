@@ -3,9 +3,21 @@ import Sortable from "sortablejs";
 const initSortable = () => {
   const todoList = document.getElementById("todo-draggable");
   const todoSortable = new Sortable(todoList, {
-    group: "lists"
-  })
-  ;
+    group: "lists",
+    onEnd: (evt) => {
+      console.log({
+              'this': this,
+              'item': evt.item,
+              'from': evt.from,
+              'to': evt.to,
+              'oldIndex': evt.oldIndex,
+              'newIndex': evt.newIndex,
+    });
+  }
+});
+
+
+
 
   const inprogressList = document.getElementById("inprogress-draggable");
   const inprogressSortable = new Sortable(inprogressList, {
