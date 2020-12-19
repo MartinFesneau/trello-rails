@@ -7,12 +7,7 @@
       <div class="col-content">
         <div class="draggable" id="todo">
           <% @todo_list.each do |task| %>
-            <div class="card" data-id="<%= task.id %>">
-              <div class="card-content">
-                <p><%= task.name %></p>
-                <p class="date"><%= task.created_at.strftime("%d %b %Y") %></p>
-              </div>
-            </div>
+            <%= render 'shared/task-card', task: task %>
           <% end %>
         </div>
         <div class="add-task">
@@ -27,9 +22,7 @@
       <h3>In progress</h3>
       <div class="draggable" id="inprogress">
         <% @inprogress_list.each do |task| %>
-          <div class="card" data-id="<%= task.id %>">
-            <p><%= task.name %> </p>
-          </div>
+          <%= render 'shared/task-card', task: task %>
         <% end %>
       </div>
     </div>
@@ -38,9 +31,7 @@
       <h3>Done</h3>
       <div class="done draggable" id="done">
       <% @done_list.each do |task| %>
-        <div class="card" data-id="<%= task.id %>">
-          <p><%= task.name %> </p>
-        </div>
+        <%= render 'shared/task-card', task: task %>
       <% end %>
       </div>
     </div>
