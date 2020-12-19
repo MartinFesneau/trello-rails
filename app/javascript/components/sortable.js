@@ -12,7 +12,6 @@ const initSortable = () => {
       group: "share",
       animation: 100,
       onChange: (evt) => {
-        console.log(evt.newIndex)
         fetch("/move_task", {
           method: "PATCH",
           headers: {

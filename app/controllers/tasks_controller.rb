@@ -26,7 +26,8 @@ class TasksController < ApplicationController
     task = Task.find(params[:id].to_i)
     task.update(status: params[:status])
     position = params[:position].to_i
-    Task.change_position(task, position)
+    user_id = current_user.id
+    Task.change_position(task, position, user_id)
   end
 
 private 

@@ -1,6 +1,8 @@
 <div class="card" data-id="<%= task.id %>">
   <div class="card-content">
     <p><%= task.name %></p>
-    <p class="date"><%= task.created_at.strftime("%d %b %Y") %></p>
+    <div class="con-date">
+      <i class="fas fa-table"></i><span class="date"><%= task.created_at.strftime("%d %b %Y") %></span>
+    </div>
   </div>
 </div>
