@@ -25,11 +25,9 @@ class TasksController < ApplicationController
   def move_task
     task = Task.find(params[:id].to_i)
     task.update(status: params[:status])
-    position = params[:position].to_i
+    new_position = params[:position].to_i
     user_id = current_user.id
-    Task.change_position(task, position, user_id)
-    a = current_user.tasks.where(status: "todo")
-    puts a 
+    Task.persist_position(task, new_position)
   end
 
   def destroy

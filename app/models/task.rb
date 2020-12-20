@@ -2,45 +2,38 @@ class Task < ApplicationRecord
   validates :name, presence: true
   belongs_to :user
 
-  def self.change_position(task, position, user_id)
+  def self.persist_position(task, new_position)
     # update position of the card to persist the order in each list
-    task.position = position
-    task.save
-    persist_position(task, user_id)
-  end
-
-  def self.persist_position(task, user_id)
     status = task.status
-    if status == "todo"
-      todo_list = Task.where(status: status, user_id: user_id).order(position: :asc)
-      change_position(todo_list, task)
-      update_array(todo_list)
-      
-    elsif status == "inprogress"
-      inprogress_list = Task.where(status: status, user_id: user_id).order(position: :asc)
-      change_position(inprogress_list, task)
-      update_array(inprogress_list)
-
-    elsif status == "done"
-      done_list = Task.where(status: status, user_id: user_id).order(position: :asc)
-      change_position(done_list, task)
-      update_array(done_list)
-    end
-  end
-
-  def change_position(list, task)
-    list.each do |element|
-      if element.position > task.position
+      # je prend toutes mes task de ma colonne tod
+    puts "debut"
+    puts task.position
+    puts "new position"
+    puts new_position
+    task_arr = task.user.tasks.where(status: status).order(position: :asc)
+    task_arr.each do |element|
+      # si la position est >= à la nouvelle position de ma carte je lui met +1
+      if element.position >= new_position
         element.position = element.position + 1
         element.save
       end
     end
+    # je met ma tache à la nouvelle position
+    task.position = new_position
+    task.save
+    puts "après changement"
+    puts task.position
+    # j'update toutes les positions de l'array
+    update_array(task)
   end
 
-  def self.update_array(list)
-    list.each_with_index do |element, index|
-      element.position = index
+  def self.update_array(task)
+    list_to_update = task.user.tasks.where(status: task.status).order(position: :asc)
+    list_to_update.each_with_index do |element, index|
+      element.position = index + 1
       element.save
     end
+    puts "after update"
+    puts task.position
   end
 end

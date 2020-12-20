@@ -23,7 +23,7 @@ const initSortable = () => {
           body: JSON.stringify({
             id: evt.item.dataset.id,  // params with id of the task
             status: evt.to.id, // give the name of the column where the task is added
-            position: evt.newIndex, // allows to store the position of the task in the column
+            position: evt.newIndex + 1, // allows to store the position of the task in the column + 1 as it is an index
           }),
         });
       },
