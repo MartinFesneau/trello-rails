@@ -2,7 +2,6 @@
   <div class="card-content">
     <div class="card-trash">
       <p><%= task.name %></p>
-      <%= task.position %>
       <%= link_to task_path(task),
                   method: :delete,
                   :data => { :confirm => "Are you sure" } do %>
