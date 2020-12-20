@@ -1,6 +1,14 @@
 <div class="card" data-id="<%= task.id %>">
   <div class="card-content">
-    <p><%= task.name %></p>
+    <div class="card-trash">
+      <p><%= task.name %></p>
+      <%= task.position %>
+      <%= link_to task_path(task),
+                  method: :delete,
+                  :data => { :confirm => "Are you sure" } do %>
+      <i class="fas fa-trash"></i>
+                  <% end %>
+    </div>
     <div class="con-date">
       <i class="fas fa-table"></i><span class="date"><%= task.created_at.strftime("%d %b %Y") %></span>
     </div>

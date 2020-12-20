@@ -51,11 +51,17 @@ p {
     cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
-    
+  
     &:active {
       cursor: grabbing;
       cursor: -moz-grabbing;
       cursor: -webkit-grabbing;
+    }
+    .fa-trash {
+      opacity: 0;
+    }
+    &:hover .fa-trash {
+      opacity: 0.2;
     }
 
     .card-content {
@@ -70,6 +76,25 @@ p {
           font-size: 12px;
           color: #ccc;
           margin-bottom: 4px;
+        }
+      }
+      .card-trash {
+        display: flex;
+        justify-content: space-between;
+        
+        a {
+          color: black;
+        }
+
+        .fa-trash {
+          margin-top: 8px;
+          margin-right: 8px;
+          // opacity: 0;
+        
+          &:hover {
+            opacity: 0.6;
+            cursor: pointer;
+          }
         }
       }
     }

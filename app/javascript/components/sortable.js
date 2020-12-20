@@ -6,8 +6,10 @@ const doneList = document.getElementById("done");
 
 const initSortable = () => {
   // token to authorize CSRF with fetch
-  const csrfToken = document.querySelector("[name='csrf-token']").content;
+  if (todoList) {
 
+    const csrfToken = document.querySelector("[name='csrf-token']").content;
+    
     var options = {
       group: "share",
       animation: 100,
@@ -26,10 +28,11 @@ const initSortable = () => {
         });
       },
     };
-
+    
     Sortable.create(todoList, options);
     Sortable.create(inprogressList, options);
     Sortable.create(doneList, options);
   };
+}
 
 export { initSortable };

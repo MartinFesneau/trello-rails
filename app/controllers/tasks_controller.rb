@@ -28,6 +28,13 @@ class TasksController < ApplicationController
     position = params[:position].to_i
     user_id = current_user.id
     Task.change_position(task, position, user_id)
+    a = current_user.tasks.where(status: "todo")
+    puts a 
+  end
+
+  def destroy
+    task = Task.find(params[:id].to_i)
+    task.destroy
   end
 
 private 
