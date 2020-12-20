@@ -33,6 +33,7 @@ class TasksController < ApplicationController
   def destroy
     task = Task.find(params[:id].to_i)
     task.destroy
+    Task.update_array(task)
   end
 
 private 

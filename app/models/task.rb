@@ -30,7 +30,7 @@ class Task < ApplicationRecord
   def self.update_array(task)
     list_to_update = task.user.tasks.where(status: task.status).order(position: :asc)
     list_to_update.each_with_index do |element, index|
-      element.position = index + 1
+      element.position = index
       element.save
     end
     puts "after update"
