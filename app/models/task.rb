@@ -6,13 +6,10 @@ class Task < ApplicationRecord
     # update position of the card to persist the order in each list
     status = task.status
       # je prend toutes mes task de ma colonne tod
-    puts "debut"
-    puts task.position
-    puts "new position"
-    puts new_position
     task_arr = task.user.tasks.where(status: status).order(position: :asc)
 
-    # new_position = new_position + 1 if new_position == task_arr.length
+    # fix bug quand on "remonte" la carte
+    new_position -= 1 if task.position >= new_position
     task_arr.each do |element|
       # si la position est >= à la nouvelle position de ma carte je lui met +1
       if element.position >= new_position
@@ -23,8 +20,6 @@ class Task < ApplicationRecord
     # je met ma tache à la nouvelle position
     task.position = new_position
     task.save
-    puts "après changement"
-    puts task.position
     # j'update toutes les positions de l'array pour éviter les trous entre les positions
     update_array(task)
   end
@@ -35,7 +30,5 @@ class Task < ApplicationRecord
       element.position = index
       element.save
     end
-    puts "after update"
-    puts task.position
   end
 end
