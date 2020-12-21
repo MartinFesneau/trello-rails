@@ -2,8 +2,10 @@ class Task < ApplicationRecord
   validates :name, presence: true
   belongs_to :user
 
+  # update position of the card to persist the order in each list
   def self.persist_position(task, new_position)
-    # update position of the card to persist the order in each list
+    # if position doesnt change, return to avoid useless db queries
+    return if task.position == new_position && task.status == new_status
     status = task.status
       # je prend toutes mes task de ma colonne tod
     task_arr = task.user.tasks.where(status: status).order(position: :asc)
