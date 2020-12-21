@@ -11,6 +11,8 @@ class Task < ApplicationRecord
     puts "new position"
     puts new_position
     task_arr = task.user.tasks.where(status: status).order(position: :asc)
+
+    # new_position = new_position + 1 if new_position == task_arr.length
     task_arr.each do |element|
       # si la position est >= à la nouvelle position de ma carte je lui met +1
       if element.position >= new_position
@@ -23,7 +25,7 @@ class Task < ApplicationRecord
     task.save
     puts "après changement"
     puts task.position
-    # j'update toutes les positions de l'array
+    # j'update toutes les positions de l'array pour éviter les trous entre les positions
     update_array(task)
   end
 

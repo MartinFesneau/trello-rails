@@ -34,6 +34,7 @@ class TasksController < ApplicationController
     task = Task.find(params[:id].to_i)
     task.destroy
     Task.update_array(task)
+    redirect_to tasks_path
   end
 
 private 

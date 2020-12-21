@@ -13,7 +13,7 @@ const initSortable = () => {
     var options = {
       group: "share",
       animation: 100,
-      onChange: (evt) => {
+      onEnd: (evt) => {
         fetch("/move_task", {
           method: "PATCH",
           headers: {
