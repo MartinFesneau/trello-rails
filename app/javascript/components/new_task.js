@@ -5,7 +5,7 @@ const showNew = () => {
 if (plus) {
     plus.addEventListener('click', () => {
       newCard.classList.toggle("d-none");
-      plus.classList.toggle("tranform-open")
+      plus.classList.toggle("tranform-open");
     })
   }
 }
