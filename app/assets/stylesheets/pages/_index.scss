@@ -8,6 +8,12 @@ p {
   font-family: $body-font;
 }
 
+@media only screen and (max-width : 576px)
+{
+  .container > .row {
+    overflow-x: auto;
+  }
+}
 .trello-col {
   background-color: $primary-background;
   width: auto;
@@ -119,6 +125,8 @@ p {
   font-size: 32px;
 
   .fas {
+    cursor: pointer;
+    transition: all 0.2s ease;
     color: black;
     opacity: 0.4;
     &:hover {
@@ -151,4 +159,9 @@ margin-right: 8px;
     // border-bottom: 1px solid green;
     box-shadow: 0 1px 2px 0 green;
   } 
+}
+
+.tranform-open {
+  transform: rotate(45deg);
+  transition: all 0.2s ease-in;
 }
