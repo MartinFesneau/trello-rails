@@ -1,39 +1,44 @@
 <div class="container">
-  
   <div class="row justify-content-around">
-
-    <div class="col-md-3 trello-col" id="todo-col">
-      <h3>To Do</h3>
-      <div class="col-content">
-        <div class="draggable" id="todo">
-          <% @todo_list.each do |task| %>
+    <div class="grid">
+    <div>
+      <div class="trello-col" id="todo-col">
+        <h3>To Do</h3>
+        <div class="col-content">
+          <div class="draggable" id="todo">
+            <% @todo_list.each do |task| %>
+              <%= render 'shared/task-card', task: task %>
+            <% end %>
+          </div>
+          <div class="add-task">
+            <i class="fas fa-plus open"></i>
+          </div>
+          <%= render 'shared/new' %>
+        </div>
+      </div>
+    </div>
+        
+    <div>
+      <div class="trello-col" id="progress-col">
+        <h3>In progress</h3>
+        <div class="draggable" id="inprogress">
+          <% @inprogress_list.each do |task| %>
             <%= render 'shared/task-card', task: task %>
           <% end %>
         </div>
-        <div class="add-task">
-            <i class="fas fa-plus open"></i>
-        </div>
-        <%= render 'shared/new' %>
       </div>
     </div>
       
-    <div class="col-md-3 trello-col" id="progress-col">
-      <h3>In progress</h3>
-      <div class="draggable" id="inprogress">
-        <% @inprogress_list.each do |task| %>
-          <%= render 'shared/task-card', task: task %>
-        <% end %>
+    <div>
+      <div class="trello-col" id="done-col">
+        <h3>Done</h3>
+        <div class="done draggable" id="done">
+          <% @done_list.each do |task| %>
+            <%= render 'shared/task-card', task: task %>
+          <% end %>
+        </div>
+        </div>
       </div>
     </div>
-    
-    <div class="col-md-3 trello-col" id="done-col">
-      <h3>Done</h3>
-      <div class="done draggable" id="done">
-      <% @done_list.each do |task| %>
-        <%= render 'shared/task-card', task: task %>
-      <% end %>
-      </div>
-    </div>
-  
   </div>
 </div>

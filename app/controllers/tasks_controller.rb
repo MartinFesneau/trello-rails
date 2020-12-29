@@ -16,10 +16,9 @@ class TasksController < ApplicationController
       redirect_to tasks_path
     else
 
-      error_string = @task.errors.messages.inject('') { |text, (key, value)| "#{text}\n#{key} #{value.join(', ')}" }
+      # error_string = @task.errors.messages.inject('') { |text, (key, value)| "#{text}\n#{key} #{value.join(', ')}" }
       # flash[:error] = { title: 'Submission Error', body: error_string }
       flash.alert = "Content can not be blank"
-
       redirect_to tasks_path
 
     end
