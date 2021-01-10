@@ -6,9 +6,7 @@
         <h3>To Do</h3>
         <div class="col-content">
           <div class="draggable" id="todo">
-            <% @todo_list.each do |task| %>
-              <%= render 'shared/task-card', task: task %>
-            <% end %>
+              <%= render 'shared/todo', todo_list: @todo_list %>
           </div>
           <div class="add-task">
             <i class="fas fa-plus open"></i>

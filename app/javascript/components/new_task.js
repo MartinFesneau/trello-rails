@@ -1,13 +1,22 @@
-const plus = document.querySelector(".fa-plus");
-const newCard = document.querySelector(".new-card")
 
-const showNew = () => {
-if (plus) {
-    plus.addEventListener('click', () => {
-      newCard.classList.toggle("d-none");
-      plus.classList.toggle("tranform-open");
+const initNewTask = () => {
+  const submitButton = document.querySelector("input[type=submit]");
+  const csrfToken = document.querySelector("[name='csrf-token']").content;
+  submitButton.addEventListener("click", (event) => {
+    const input = document.getElementById("task_name").value;
+    event.preventDefault()
+    console.log(input)
+    fetch("/create", {
+      method: "POST",
+      headers: {
+      "X-CSRF-Token": csrfToken, // Set the token
+      "Content-Type": "application/json",
+    },
+      body: JSON.stringify({
+        name: input
     })
-  }
+  })
+})
 }
-  
-export { showNew };
+
+export { initNewTask } 

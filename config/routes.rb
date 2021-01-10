@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :tasks
 
   patch 'move_task', to: 'tasks#move_task'
+  # post 'create', to: 'tasks#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

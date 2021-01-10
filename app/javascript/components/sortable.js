@@ -1,12 +1,12 @@
 import Sortable from "sortablejs";
 
-const todoList = document.getElementById("todo");
-const inprogressList = document.getElementById("inprogress");
-const doneList = document.getElementById("done");
-
 const initSortable = () => {
+  const todoList = document.getElementById("todo");
+  const inprogressList = document.getElementById("inprogress");
+  const doneList = document.getElementById("done");
   // token to authorize CSRF with fetch
   if (todoList) {
+    console.log(todoList)
 
     const csrfToken = document.querySelector("[name='csrf-token']").content;
     
@@ -32,6 +32,7 @@ const initSortable = () => {
     Sortable.create(todoList, options);
     Sortable.create(inprogressList, options);
     Sortable.create(doneList, options);
+    console.log('mes zones sortables sont crées')
   };
 }
 
