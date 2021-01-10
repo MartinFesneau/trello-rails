@@ -14,6 +14,7 @@ class TasksController < ApplicationController
     @task.position = @todo_list.length + 1
     if @task.save
       redirect_to tasks_path
+      # the respond to format.js is useful if i want to do more specific stuff after the ajax call, need to have a create.js.erb file in views/tasks
       # respond_to do |format|
       #   format.html { redirect_to tasks_path }
       #   # format.json { render json: { success: true } }
